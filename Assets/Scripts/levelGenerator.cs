@@ -11,6 +11,9 @@ public class levelGenerator : MonoBehaviour
     public GameObject[] availableObjects;
     public List<GameObject> objects;
     
+    public int count=0;
+    public GameObject Tom;
+
     public float objMinDistance = 5f;
     public float objMaxDistance = 10f;
 
@@ -79,14 +82,27 @@ public class levelGenerator : MonoBehaviour
 
     void AddObject(float lastObjectX){
         int randomIndex = Random.Range(0,availableObjects.Length);
-        GameObject obj = (GameObject) Instantiate(availableObjects[randomIndex]);
         float objectPositionX = lastObjectX + Random.Range(objMinDistance,objMaxDistance);
         float randomY = Random.Range(objMinY,objMaxY);
-        obj.transform.position = new Vector3(objectPositionX,randomY,0);
-        float rotation = Random.Range(objMinRotation,objMaxRotation);
-        obj.transform.rotation = Quaternion.Euler(Vector3.forward*rotation);
-        objects.Add(obj);
+        if(count <=0)
+        {
+            GameObject obj = (GameObject) Instantiate(Tom);
+            obj.transform.position = new Vector3(objectPositionX,-1.5f,0);
+            objects.Add(obj);
+            count=25;  
+        }
+        else
+        {
+            GameObject obj = (GameObject) Instantiate(availableObjects[randomIndex]);   
+            obj.transform.position = new Vector3(objectPositionX,randomY,0);
+            float rotation = Random.Range(objMinRotation,objMaxRotation);
+            objects.Add(obj);
+        }
+
+        // obj.transform.rotation = Quaternion.Euler(Vector3.forward*rotation);
+        count -= 1;
     }
+
     void GenerateObjectsIfRequired()
     {
         //1
