@@ -23,6 +23,15 @@
       },
       "url": "https://packages.unity.com"
     },
+    "com.unity.2d.ik": {
+      "version": "2.2.0-preview.1",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {
+        "com.unity.2d.common": "2.1.0"
+      },
+      "url": "https://packages.unity.com"
+    },
     "com.unity.2d.path": {
       "version": "2.1.1",
       "depth": 1,
@@ -55,7 +64,7 @@
       "dependencies": {}
     },
     "com.unity.2d.spriteshape": {
-      "version": "3.0.17",
+      "version": "3.0.18",
       "depth": 0,
       "source": "registry",
       "dependencies": {
