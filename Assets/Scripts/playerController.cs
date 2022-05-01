@@ -137,12 +137,21 @@ public class playerController : MonoBehaviour
             anim.SetTrigger("Damage");
             collider.gameObject.GetComponent<AudioSource>().Play();
         }
+        else if(collider.gameObject.CompareTag("heart") && !isDead)
+        {
+            if(hearts >= 0 && hearts < 3){
+                hearts += 1;
+                UpdateHealthBar();
+                collider.gameObject.GetComponent<SpriteRenderer>().enabled = false;
+            }
+        }
     }
     void HitByLazer(Collider2D lazerCollider)
     {
         AudioSource lazerZap = lazerCollider.gameObject.GetComponent<AudioSource>();
             lazerZap.PlayOneShot(damageAudio);
             Shock.GetComponent<Animator>().SetTrigger("shock");
+            lazerCollider.gameObject.GetComponent<lazer>().enabled = false;
             lazerCollider.gameObject.GetComponent<Collider2D>().enabled = false;            
 
         if(hearts > 0)
@@ -150,8 +159,13 @@ public class playerController : MonoBehaviour
             // if(maxCoins<Coins){maxCoins=Coins;}
             // totalCoins+=Coins;
             anim.SetTrigger("Damage");
-            hearts-=1;
+            hearts-=1; 
+            if(ForwardSpeed > 4f)
+            {
+                ForwardSpeed -= 0.5f;
+            }
         }
+
         else if(hearts <= 0)
         {
             // lazerZap.PlayOneShot(deathAudio);
@@ -220,6 +234,8 @@ public class playerController : MonoBehaviour
                 health[i].enabled = false;
             }
         }
+
+        
     }
     public void UpdateFuelStatus()
     {
@@ -243,5 +259,7 @@ public class playerController : MonoBehaviour
     {
         Application.Quit();
     }
+
+
 }
 
