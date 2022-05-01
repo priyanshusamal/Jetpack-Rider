@@ -7,7 +7,6 @@ TagManager:
   - Coin
   - lazer
   - Collector
-  - heart
   layers:
   - Default
   - TransparentFX

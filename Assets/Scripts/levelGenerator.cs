@@ -12,7 +12,7 @@ public class levelGenerator : MonoBehaviour
     public List<GameObject> objects;
     
     public int count=0;
-    public GameObject[] rareObjects;
+    public GameObject Tom;
 
     public float objMinDistance = 5f;
     public float objMaxDistance = 10f;
@@ -86,14 +86,10 @@ public class levelGenerator : MonoBehaviour
         float randomY = Random.Range(objMinY,objMaxY);
         if(count <=0)
         {
-            if(gameObject.GetComponent<playerController>().ForwardSpeed < 6f)
-            {
-                gameObject.GetComponent<playerController>().ForwardSpeed += 0.5f;
-            }
-            GameObject obj = (GameObject) Instantiate(rareObjects[Random.Range(0,rareObjects.Length)]);
-            obj.transform.position = new Vector3(objectPositionX,randomY,0);
+            GameObject obj = (GameObject) Instantiate(Tom);
+            obj.transform.position = new Vector3(objectPositionX,-1.5f,0);
             objects.Add(obj);
-            count=20;  
+            count=25;  
         }
         else
         {
